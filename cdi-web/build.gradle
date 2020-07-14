@@ -1,0 +1,23 @@
+
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java-library'
+    id 'war'
+    id 'eclipse-wtp'
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+	
+	// para CDI
+	compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-shaded', version: '3.1.4.Final'
+	// https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+	// permite manejar el @WebServlet
+	providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    
+}
