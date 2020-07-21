@@ -1,0 +1,23 @@
+
+plugins {
+    
+    id 'war'
+    id 'eclipse-wtp'
+}
+
+repositories {
+    
+    jcenter()
+}
+
+dependencies {
+    
+    // https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-core
+	compile group: 'org.jboss.resteasy', name: 'resteasy-core', version: '4.5.5.Final'
+	// para iniciar el servlet de resteasy https://docs.jboss.org/resteasy/docs/4.5.5.Final/userguide/html/Installation_Configuration.html#d4e155
+	compile group: 'org.jboss.resteasy', name: 'resteasy-servlet-initializer', version: '4.5.5.Final'
+	
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final'
+	
+    
+}
