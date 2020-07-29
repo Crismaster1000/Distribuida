@@ -16,6 +16,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
 	
+	// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-core
+	compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final'
+	
 	
    
 }
