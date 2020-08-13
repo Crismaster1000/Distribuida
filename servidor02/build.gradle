@@ -1,0 +1,28 @@
+
+plugins {
+    
+    id 'java-library'
+    id 'io.quarkus' version '1.6.1.Final'
+}
+
+repositories {
+    
+    jcenter()
+}
+
+ext {
+	quarkusVersion = '1.6.1.Final'
+}	
+
+group 'com.distribuida'
+version '1.0.0-SNAPSHOT'
+
+dependencies {
+
+	implementation platform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+	
+	// https://mvnrepository.com/artifact/io.quarkus/quarkus-resteasy
+	compile group: 'io.quarkus', name: 'quarkus-resteasy'
+	compile group: 'io.quarkus', name: 'quarkus-resteasy-jackson'
+    
+}

@@ -1,0 +1,39 @@
+plugins {
+    
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    
+}
+
+repositories {
+    jcenter()
+}
+
+ext {
+	helidonVersion = '2.0.1'
+}
+
+dependencies {
+   // import Helidon dependency management
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonVersion}")
+   
+   // https://mvnrepository.com/artifact/io.helidon.microprofile.server/helidon-microprofile-server
+	compile group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server'
+   
+}
+
+task copylibs(type : Copy) {
+	group 'build'
+	from configurations.runtimeClasspath
+	into 'build/libs/lib'
+}
+
+jar {
+	manifest{
+		attributes "Main-Class": "io.helidon.microprofile.server.Main"
+	}
+}
+
+shadowJar {
+	mergeServiceFiles()
+}
