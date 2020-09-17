@@ -1,0 +1,18 @@
+//correr servidor consul
+consul agent -dev 
+http://127.0.0.1:8500/ui
+
+// correr servidor de proyecti
+java -jar config01-all.jar
+http://127.0.0.1:8080/hola      // el puerto puede variar
+
+// para Levantar otra instancia
+java -Dserver.port=8081 -jar build/libs/registro01-all.jar
+
+// parar nginx
+nginx -s stop    127.0.0.1
+nginx -s reload
+
+//para consul template
+consul-template.exe
+consul-template.exe -config=consul-template-config.hcl

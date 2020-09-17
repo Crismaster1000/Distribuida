@@ -1,0 +1,12 @@
+java -jar thor-serv-thorntail.jar
+
+   
+java -Dswarm.http.port=8080 -jar thor-serv-thorntail.jar
+
+java -Dthorntail.http.port=8080  -Dthorntail.port.offset=3 -jar thor-serv1-thorntail.jar
+
+- system properties
+- consul / vault
+- microprofile.properties
+- 
+java -Dthorntail.http.port=8080  -Dthorntail.port.offset=3 -jar thor-serv1-thorntail.jar

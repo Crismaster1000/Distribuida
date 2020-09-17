@@ -1,0 +1,55 @@
+java -cp "servidor01.jar;lib/*" io.helidon.microprofile.server.Main en build/libs
+java -jar servidor01-all.jar
+
+en quarkus el puerto es el 8080 por defecto java -jar servidor02-1.0.0-SNAPSHOT-runner.jar en path build
+
+en operliberty es el puerto 9080 /comando server run el el path wlp/bin
+
+
+
+db:
+  source: jdbc
+  connection:
+    url: jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require
+    username: dbUri.getUserInfo().split(":")[0];
+    password: dbUri.getUserInfo().split(":")[1];
+    
+statements:
+    # required ping statement
+    ping: "DO 0"
+    # SQL to persona
+    select-persona : "select * from persona;"
+    delete-persona : "delete from Persona where id = ?;"
+    update-persona : "update Persona set nombre = ?,direccion = ?, correo =? where id = ?;"
+    insert-persona : "INSERT INTO Persona (id,nombre,direccion,correo) VALUES(?, ?, ?, ?);"
+
+
+db:
+  source: "jdbc"
+  connection:
+    url: "jdbc:postgresql://127.0.0.1:5432/distribuida?useSSL=false"
+    username: "postgres"
+    password: "Cromina1000"
+
+
+db:
+  source: jdbc
+  connection:
+    url: jdbc:postgresql://127.0.0.1:5432/distribuida
+    username: postgres
+    password: Cromina1000
+    poolName: postgresqlPool
+
+db:
+  source: jdbc
+  connection:
+    url: "jdbc:postgres://ec2-3-208-50-226.compute-1.amazonaws.com:5432/dekgog6n43n221"
+    username: "uzoxzbxjxhrtbs"
+    password: "94d9e0da19171ce6e7b64023e099e2f3fc2a7abb84cdd7ccdc2f9c5c7523047e"
+
+
+server:
+  port: 7001
+  host: 0.0.0.0
+  features:
+    print-details: true
