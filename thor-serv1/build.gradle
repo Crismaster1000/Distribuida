@@ -1,0 +1,42 @@
+buildscript {
+	
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies {
+		classpath group: 'io.thorntail', name: 'thorntail-gradle-plugin', version: '2.7.0.Final'
+     
+	}
+	
+}
+
+apply plugin: 'thorntail'
+apply plugin: 'war'
+
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	implementation enforcedPlatform("io.thorntail:bom:2.7.0.Final")
+	implementation "io.thorntail:jpa"
+	implementation "io.thorntail:microprofile"
+	implementation "io.thorntail:cdi"
+	implementation "io.thorntail:datasources"
+		
+	//BD
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+	
+	//zookeeper
+   compile group: 'org.apache.curator', name: 'curator-x-discovery', version: '5.1.0'
+   
+   	//VAULT CONFIG
+   	compile group: 'com.bettercloud', name: 'vault-java-driver', version: '5.1.0'
+}
+
+
+
+

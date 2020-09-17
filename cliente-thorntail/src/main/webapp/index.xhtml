@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<title>Customer</title>
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Customer</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+	<script src="https://kit.fontawesome.com/f90d3bf50d.js"
+		crossorigin="anonymous"></script>
+
+</h:head>
+<h:body>
+
+	<div class="container">
+		<div class="about-heading-content">
+			<div class="row">
+				<div class="col-xl-6 col-lg-10 mx-auto">
+					<br />
+					<h2 class="site-heading text-center text-white d-sm-block">
+						<span class="text-primary mb-3 mt-3">Administracion de
+							Clientes</span>
+					</h2>
+					<br />
+					<h:panelGroup rendered="#{customerController.banderaListar}"
+						class="">
+						<div class="col-md-9 mx-auto">
+							<h:form>
+								<a class="btn btn-primary btn-sm mr-3 "> <h:commandButton
+										value=" Nuevo "
+										actionListener="#{customerController.banderaCrear()}"
+										class="text-white btn btn-primary ml-3 mr-3" /></a>
+								<a class="btn btn-primary btn-sm ml-3"> <h:button
+										value="Regresar" outcome="inicio.xhtml"
+										class="text-white btn btn-primary ml-3 mr-3" /></a>
+										
+							</h:form>
+							
+						</div>
+						<br />
+
+						<div class="col-md-12 mx-auto  table-responsive-sm">
+							<h:form id='listar'>
+								<h:dataTable class="table table-striped table-sm"
+									value="#{customerController.customers}" var="customer"
+									border="1" style="height: 30px;">
+									
+									<h:column>
+										<f:facet name="header">customer Id</f:facet>
+										<h:outputLabel value="#{customer.id}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Nombre</f:facet>
+										<h:outputLabel value="#{customer.name}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Apellido</f:facet>
+										<h:outputLabel value="#{customer.surname}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Acciones</f:facet>
+										<h:commandButton class="btn btn-link" value="Editar"
+											actionListener="#{customerController.banderaEditar(customer)}" />
+										<h:outputText value=" " />
+										<h:commandButton class="btn btn-link" value="Eliminar"
+											actionListener="#{customerController.eliminarCustomer(customer)}" />
+									</h:column>
+								</h:dataTable>
+							</h:form>
+
+
+						</div>
+					</h:panelGroup>
+
+
+					<div class="col-md-6 mx-auto">
+						<h:panelGroup rendered="#{customerController.banderaEditar}">
+							<h:form>
+								<h:panelGrid columns="1" cellpadding="2" cellspacing="1"
+									class="border border-write">
+									<h:outputLabel value="ID Cliente" class="control-label">
+										<h:outputText value="#{customerController.customer.id}"
+											class=" form-control" />
+									</h:outputLabel>
+									<h:outputLabel value="Nombre ">
+										<h:inputText value="#{customerController.customer.name}"
+											class="form-control" />
+									</h:outputLabel>
+									<h:outputLabel value="Apellido">
+										<h:inputText value="#{customerController.customer.surname}"
+											class="form-control" />
+									</h:outputLabel>
+
+								</h:panelGrid>
+								<h:panelGrid columns="1" cellpadding="10" cellspacing="1">
+									<h:form>
+										<h:commandButton class="btn btn-link" value="Cancelar"
+											actionListener="#{customerController.listarCustomers()}" />
+										<h:outputText value=" " />
+										<h:commandButton value="Crear Customer"
+											actionListener="#{customerController.guardarCustomer()}"
+											rendered="#{customerController.banderaCrear}" />
+										<h:commandButton class="btn btn-link" value="Guardar"
+											actionListener="#{customerController.actualizarCustomer()}"
+											rendered="#{customerController.banderaEditar}" />
+									</h:form>
+								</h:panelGrid>
+							</h:form>
+						</h:panelGroup>
+
+					</div>
+					<div class="col-md-6 mx-auto">
+					
+						<h:panelGroup rendered="#{customerController.banderaCrear}">
+							<h:form>
+								<h:panelGrid columns="1" cellpadding="2" cellspacing="1"
+									class="border border-write">
+									<h:outputLabel value="Nombre " />
+									<h:inputText id="nombre"
+										value="#{customerController.customer.name}"
+										class=" form-control" />
+									<h:outputLabel value="Apellido " />
+									<h:inputText id="apellido"
+										value="#{customerController.customer.surname}"
+										class=" form-control" />
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" cellpadding="10" cellspacing="1">
+									<h:form>
+										<h:commandButton class="btn btn-link" value="Cancelar"
+											actionListener="#{customerController.listarCustomers()}" />
+										<h:outputText value=" " />
+										<h:commandButton class="btn btn-link" value="Guardar"
+											actionListener="#{customerController.guardarCustomer()}"
+											rendered="#{customerController.banderaCrear}" />
+										<h:commandButton class="btn btn-link" value="Editar"
+											actionListener="#{customerController.actualizarCustomer()}"
+											rendered="#{customerController.banderaEditar}" />
+									</h:form>
+								</h:panelGrid>
+
+							</h:form>
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</h:body>
+</html>
