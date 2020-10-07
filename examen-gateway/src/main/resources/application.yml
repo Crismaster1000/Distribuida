@@ -1,0 +1,19 @@
+server:
+  port: 8085
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: personaModulo
+        uri: http://localhost:8081/persona
+        predicates:
+        - Path=/persona/**
+      - id: persona2Modulo
+        uri: http://localhost:8082/persona
+        predicates:
+        - Path=/personaa/**
+      - id: persona3Modulo
+        uri: http://localhost:8083/persona
+        predicates:
+        - Path=/personaaa/**

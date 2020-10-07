@@ -1,0 +1,64 @@
+plugins {
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'io.freefair.lombok' version '5.1.0'
+}
+
+repositories {
+    jcenter()
+}
+
+ext {
+	helidonVersion = '2.0.2'
+}
+
+dependencies {
+
+ 	//import helidon manage
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonVersion}")
+    
+	compile group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server', version: '2.0.2'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.29.1'
+
+    //BD
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
+    
+	compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-datasource-hikaricp', version: '2.0.2'
+	compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jta-weld', version: '2.0.2'
+	compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jpa', version: '2.0.2'
+	compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-eclipselink', version: '2.0.2'
+	
+	compile group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
+	compile group: 'javax.transaction', name: 'javax.transaction-api', version: '1.3'
+	
+	//CONSUL
+	//compile group: 'org.microprofile-ext.config-ext', name: 'configsource-consul', version: '1.0.9'
+	//compile group: 'com.ecwid.consul', name: 'consul-api', version: '1.4.5'
+	
+	
+	// https://mvnrepository.com/artifact/io.helidon.microprofile.rest-client/helidon-microprofile-rest-client
+    compile group: 'io.helidon.microprofile.rest-client', name: 'helidon-microprofile-rest-client', version: '2.0.2'
+	
+	compile('javax.xml.bind:jaxb-api:2.3.0')
+	compile('javax.activation:activation:1.1')
+	compile('org.glassfish.jaxb:jaxb-runtime:2.3.0')
+    
+     
+}
+
+
+/*task copylibs(type : Copy) {
+	group 'build'
+	from configurations.runtimeClasspath
+	into 'build/libs/lib'
+}*/
+
+jar {
+	manifest{
+		attributes "Main-Class": "io.helidon.microprofile.server.Main"
+	}
+}
+
+shadowJar {
+	mergeServiceFiles()
+}
